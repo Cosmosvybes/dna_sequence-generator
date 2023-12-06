@@ -25,14 +25,17 @@ function App() {
   const handleDnaComplimentartSequence = (dna) => {
     const complimentaryBucket = [];
     const splitSequence = dna.toUpperCase().split("");
+
     splitSequence.map((nucleotide) => {
       const matchNecleotide = neuclutides.find((nucleo) => {
         return nucleo.symbol == nucleotide;
       });
-      if (!matchNecleotide) {
-        setComplimentary("invalid DNA sequence");
-      } else {
+
+      if (matchNecleotide) {
         complimentaryBucket.push(matchNecleotide.base);
+        // console.log(matchNecleotide.symbol)
+      } else if (typeof neuclutides == "number") {
+        setComplimentary("Invalid dna sequence");
       }
     });
     setComplimentary(complimentaryBucket.join(""));
@@ -41,12 +44,15 @@ function App() {
   return (
     <>
       <div className="flex h-screen bg-green-700 justify-center items-center flex-col">
-        <h1 className="text-white text-4xl max-sm:text-xl max-sm:font-bold max-sm:text-center">
+        <h1 className="absolute top-0 text-4xl max-sm:text-xl text-gray-300 font-bold">
+          Welcome Back,
+        </h1>
+        <h1 className=" text-gray-300 text-4xl max-sm:text-xl max-sm:font-bold max-sm:text-center">
           {" "}
           DNA SEQUENCE COMPLIMENTARY GENERATOR
         </h1>
         <input
-          className="rounded-sm px-1 py-2 w-72"
+          className="px-1 py-2 w-72 rounded-md"
           type="text"
           value={dna}
           placeholder="Enter your dna sequence"
@@ -56,9 +62,9 @@ function App() {
           onClick={() => handleDnaComplimentartSequence(dna)}
           type="submit"
           value={"Generate DNA complimentary"}
-          className="m-1 border border-gray-500 px-1 py-2 w-72 bg-black text-white rounded-sm font-bold hover:bg-green-600 hover:border-black"
+          className="m-1 border border-green-500 px-2 py-2 w-72 bg-green-600  text-gray-200 rounded-md font-bold hover:bg-gray-200 hover:border-green-400 hover:text-green-500"
         />
-        <div className="h-36 border border-gray-300 w-72 overflow-auto rounded-sm bg-gray-300 px-1 py-2 flex justify-center items-center flex-wrap  ">
+        <div className="h-36  text-green-500 border border-gray-300 w-72 overflow-auto rounded-md bg-gray-300 px-1 py-2 flex justify-center items-center flex-wrap  ">
           <h1 className="font-bold text-4xl">{complimentary}</h1>
         </div>
       </div>
