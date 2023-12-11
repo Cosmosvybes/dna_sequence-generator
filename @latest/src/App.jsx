@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { FaDna } from "react-icons/fa";
 
 function App() {
   const [dna, setDna] = useState("");
@@ -33,7 +34,6 @@ function App() {
 
       if (matchNecleotide) {
         complimentaryBucket.push(matchNecleotide.base);
-        // console.log(matchNecleotide.symbol)
       } else if (typeof neuclutides == "number") {
         setComplimentary("Invalid dna sequence");
       }
@@ -47,10 +47,13 @@ function App() {
         <h1 className="absolute top-0 text-4xl max-sm:text-xl text-gray-300 font-bold">
           Welcome Back,
         </h1>
+        <FaDna className="text-9xl text-gray-200 m-1" />
+
         <h1 className=" text-gray-300 text-4xl max-sm:text-xl max-sm:font-bold max-sm:text-center">
           {" "}
-          DNA SEQUENCE COMPLIMENTARY GENERATOR
+          COMPLIMENTARY DNA SEQUENCE GENERATOR
         </h1>
+
         <input
           className="px-1 py-2 w-72 rounded-md"
           type="text"
